@@ -1,13 +1,7 @@
 module StoryGem
-  class Calendar < ActiveResource::Base
-    self.site = "#{::StoryGem.endpoint}/api/v1"
+  class Calendar < ::StoryGem::Base
 
-    def events(scope = :all)
-      Event.find(scope, :params => {:calendar_id => self.id})
-    end
+    attr_reader :id, :summary, :color, :external_id, :external_type
 
-    def event(id)
-      events(id)
-    end
   end
 end

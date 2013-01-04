@@ -1,15 +1,9 @@
 module StoryGem
-  class Event < ActiveResource::Base
-    self.site = "#{StoryGem.endpoint}/api/v1"
+  class Event < ::StoryGem::Base
 
-    self.prefix = "/api/v1/calendars/:calendar_id/"
+    attr_reader :id, :calendar_id, :summary, :description, :external_id, :start, :end,
+        :created_at, :updated_at, :size
 
-    def calendar
-      Calendar.find(self.prefix_options[:calendar_id])
-    end
 
-    def calendar=(calendar)
-      self.prefix_options[:calendar_id] = calendar.id
-    end
   end
 end
