@@ -3,11 +3,11 @@ module StoryGem
 
     def calendars
       options = {}
-      collection_from_response(::StoryGem::Calendar, :get, "/api/v1/calendars.json", options)
+      collection_from_response(::StoryGem::Calendar, :get, "/api/v1/calendars.json", :body => options)
     end
 
     def calendar_create options = {}
-      object_from_response(::StoryGem::Calendar, :post, "/api/v1/calendars.json", options)
+      object_from_response(::StoryGem::Calendar, :post, "/api/v1/calendars.json", :body => {'calendar' => options})
     end
 
     def events_import calendar_id, params
