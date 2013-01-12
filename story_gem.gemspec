@@ -15,7 +15,6 @@ Gem::Specification.new do |gem|
   gem.require_paths = ["lib"]
   gem.version       = StoryGem::VERSION
 
-  gem.add_dependency 'activeresource', '3.2.8'
   gem.add_dependency 'rake'
   gem.add_dependency 'omniauth'
   gem.add_dependency 'omniauth-oauth2'
