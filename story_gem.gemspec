@@ -18,6 +18,7 @@ Gem::Specification.new do |gem|
   gem.add_dependency 'rake'
   gem.add_dependency 'omniauth'
   gem.add_dependency 'omniauth-oauth2'
+  gem.add_dependency 'httparty'
 
   gem.add_development_dependency 'rspec'
 
