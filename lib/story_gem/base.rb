@@ -35,7 +35,7 @@ module StoryGem
       fetch_or_new(parsed(response))
     end
 
-    def parsed response
+    def self.parsed response
       if response.respond_to? :parsed
         response.parsed
       elsif response.respond_to? :parsed_response
