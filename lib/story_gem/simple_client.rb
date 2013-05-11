@@ -8,7 +8,7 @@ module StoryGem
     include ::HTTParty
     include StoryGem::API
 
-    base_uri 'hoodb.com'
+    base_uri 'www.hoodb.com'
 
     attr_accessor :api_key
 
