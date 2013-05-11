@@ -12,14 +12,14 @@ module StoryGem
 
     def events_import calendar_id, params
       response = post("/api/v1/calendars/#{calendar_id}/events/import", :body => {'_json' => params})
-      response.parsed
+      parsed(response)
     end
 
 
 
     def collection_from_response(klass, request_method, url, params={}, options={})
       response = send(request_method.to_sym, url, params, options)
-      collection_from_array(klass, response.parsed)
+      collection_from_array(klass, parsed(response))
     end
 
     def collection_from_array(klass, array)
@@ -33,5 +33,14 @@ module StoryGem
       klass.from_response(response)
     end
 
+    private
+
+    def parsed response
+      if response.respond_to? :parsed
+        response.parsed
+      elsif response.respond_to? :parsed_response
+        response.parsed_response
+      end
+    end
   end
 end

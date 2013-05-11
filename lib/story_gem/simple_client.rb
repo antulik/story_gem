@@ -1,10 +1,12 @@
 require 'story_gem/configurable'
 require 'story_gem/api'
 
+require 'httparty'
+
 module StoryGem
   class SimpleClient
-    include StoryGem::API
     include ::HTTParty
+    include StoryGem::API
 
     base_uri 'hoodb.com'
 
@@ -12,31 +14,24 @@ module StoryGem
 
     def initialize(api_key, options = {})
       self.api_key = api_key
-      self.base_uri = option[:base_uri] if option[:base_uri]
+      self.class.base_uri(options[:base_uri]) if options[:base_uri]
+      self.class.default_params :api_key => api_key
     end
 
     def get path, params, options = {}
-      self.class.get(path, params.merge(common_hash))
+      self.class.get(path, params)
     end
 
     def post path, params, options = {}
-      self.class.post(path, params.merge(common_hash))
+      self.class.post(path, params)
     end
 
     def put path, params, options= {}
-      self.class.put(path, params.merge(common_hash))
+      self.class.put(path, params)
     end
 
     def delete
-      self.class.delete(path, params.merge(common_hash))
-    end
-
-    private
-
-    def common_hash
-      {
-          :api_key => api_key
-      }
+      self.class.delete(path, params)
     end
 
   end
